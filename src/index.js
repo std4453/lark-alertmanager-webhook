@@ -14,9 +14,12 @@ app.use(logger());
 
 const config = await (async () => {
   try {
-    const configString = await fs.readFile("config.yaml", {
-      encoding: "utf8",
-    });
+    const configString = await fs.readFile(
+      process.env.CONFIG_PATH || "config.yaml",
+      {
+        encoding: "utf8",
+      }
+    );
     return YAML.parse(configString);
   } catch (e) {
     console.error("Invalid config!");
@@ -38,7 +41,7 @@ config.providers.forEach(({ name, hash, type, config }) => {
   }
   const client = new ClientClass(name, config);
   clients[hash] = client;
-})
+});
 
 router.post("/webhook/alert/:hash", async (ctx) => {
   const client = clients[ctx.params.hash];
