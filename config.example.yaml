@@ -1,0 +1,15 @@
+providers:
+  - name: webhook
+    hash: <hash>
+    type: webhook
+    config: 
+      url: https://open.feishu.cn/open-apis/bot/v2/hook/<id>
+  - name: playground
+    hash: <hash>
+    type: bot
+    config: 
+      appID: cli_<id>
+      appSecret: <secret>
+      chats:
+        - oc_<chat>
+      alertManagerEndpoint: http://<alertmanager>:9093
