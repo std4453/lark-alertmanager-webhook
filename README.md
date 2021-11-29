@@ -70,7 +70,7 @@ stringData:
 
 ### 2. 配置 `lark-alertmanager-webhook`
 
-用你喜欢的方式部署服务本体，或使用镜像 `ghcr.io/std4453/lark-alertmanager/webhook:latest`，支持的环境变量包括：
+用你喜欢的方式部署服务本体，或使用镜像 `ghcr.io/std4453/lark-alertmanager-webhook:latest`，支持的环境变量包括：
 
 | 名称 | 含义 | 默认值 | 镜像默认 |
 | --- | --- | --- | --- |
