@@ -70,7 +70,16 @@ stringData:
 
 ### 2. 配置 `lark-alertmanager-webhook`
 
-以任意你喜欢的方式部署服务本体（镜像地址待补充），并提供配置文件 `config.yaml`，模板可以参照 [`config.example.yaml`](./config.example.yaml)，比如：
+用你喜欢的方式部署服务本体，或使用镜像 `ghcr.io/std4453/lark-alertmanager/webhook:latest`，支持的环境变量包括：
+
+| 名称 | 含义 | 默认值 | 镜像默认 |
+| --- | --- | --- | --- |
+| `PORT` | 服务监听端口 | `3000` | `3000` |
+| `CONFIG_PATH` | 配置文件路径 | `./config.yaml` | `/usr/src/app/config/config.yaml` |
+
+镜像中增加一层路径是为了方便 k8s mount。
+
+配置文件模板可以参照 [`config.example.yaml`](./config.example.yaml)，比如：
 
 ```yaml
 providers:
@@ -143,7 +152,7 @@ http://<lark-alertmanager-webhook_domain>/webhook/callback/<hash>
 
 ![Screenshot](screenshots/3.png)
 
-这里 Created By 填入的是操作者的用户名，时间是从操作时间开始计算。匹配规则会使用所有 annotation，理论上可能会匹配到其他的 alert。
+这里 Created By 填入的是操作者的用户名，时间是从操作时间开始计算。匹配规则会使用所有 label，理论上可能会匹配到其他的 alert。
 
 ## 作者
 

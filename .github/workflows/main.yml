@@ -30,6 +30,13 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: ghcr.io/std4453/lark-alertmanager-webhook
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.4.1
