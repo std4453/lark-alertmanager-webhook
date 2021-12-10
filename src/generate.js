@@ -34,15 +34,18 @@ export default (alert, { withActions = false } = {}) => {
           : {
               critical: "red",
               warning: "yellow",
-            }[severity],
+              info: "blue",
+            }[severity] ?? "",
       title: {
-        content:
+        content: `${
           status === "resolved"
             ? "✅ 报警解除"
             : {
                 critical: "🚨 集群报警",
                 warning: "⚠️ 集群风险",
-              }[severity],
+                info: "ℹ️ 集群提示",
+              }[severity]
+        }: ${alertname}`,
         tag: "plain_text",
       },
     },
